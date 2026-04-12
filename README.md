@@ -227,8 +227,4 @@ This project is being built in milestone phases to ensure stability, testing, an
 
 This project is proprietary unless otherwise specified.
 
-```
 
-I can also turn this into a more polished GitHub-style README with sections like:
-`Tech Stack`, `How It Works`, `API Integrations`, and `Future Roadmap`.
-```
