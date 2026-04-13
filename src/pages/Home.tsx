@@ -557,12 +557,7 @@ export default function ApexDashboard() {
                 >
                   ↺ New search
                 </button>
-                <button
-                  onClick={() => { setSaved(true); setTimeout(() => setSaved(false), 2500); }}
-                  style={{ padding: "9px 18px", fontSize: 12, fontWeight: 500, borderRadius: 30, cursor: "pointer", fontFamily: "'Space Grotesk', sans-serif", transition: "all 0.2s", border: saved ? "1px solid #166534" : `1px solid ${C.border}`, background: saved ? "#0D2A1A" : "transparent", color: saved ? C.green : C.muted }}
-                >
-                  {saved ? "✓ Saved to Supabase" : "Save to Supabase"}
-                </button>
+          
                 <button
                   style={{ padding: "9px 22px", background: C.text, border: "none", color: C.bg, fontSize: 12, fontWeight: 700, borderRadius: 30, cursor: "pointer", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.2px", transition: "opacity 0.15s" }}
                   onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
