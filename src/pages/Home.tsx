@@ -591,7 +591,7 @@ export default function ApexDashboard() {
               </div>
             ))}
           </div>
-          <span style={{ ...ff, fontSize: 10, color: C.muted }}>© 2025 Apex Intelligence</span>
+          <span style={{ ...ff, fontSize: 10, color: C.muted }}>© 2026 Apex Intelligence</span>
         </div>
         </div>
       </div>
