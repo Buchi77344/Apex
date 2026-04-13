@@ -256,7 +256,7 @@ function TileSlider({ tiles }: { tiles: HighlightTile[] }) {
   });
 
   return (
-    <div style={{ marginBottom: 20 }}>
+    <div style={{ margin: 20 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
         <span style={{ ...ffH, fontSize: 10, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.muted }}>
           Key highlights
@@ -266,7 +266,7 @@ function TileSlider({ tiles }: { tiles: HighlightTile[] }) {
           <button onClick={() => scroll("right")} style={arrStyle(canRight)} disabled={!canRight}>→</button>
         </div>
       </div>
-      <div ref={scrollRef} style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none", gap: 10, paddingBottom: 4 }}>
+      <div ref={scrollRef} style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none", gap: 10, padding: 10}}>
         <style>{`.apex-tiles-scroll::-webkit-scrollbar{display:none}`}</style>
         {tiles.map((t, i) => (
           <div
@@ -396,7 +396,7 @@ export default function ApexDashboard() {
         </nav>
 
         {/* Scrollable content area */}
-        <div className="apex-content" style={{ padding: "clamp(16px,3.5vw,24px) clamp(16px,4vw,24px)" }}>
+        <div className="apex-content" style={{  }}>
           {/* Search zone */}
           <div style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: "clamp(20px,4vw,32px) clamp(16px,4vw,28px)" }}>
           <div style={{ ...ff, fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: C.muted, marginBottom: 10 }}>
@@ -478,7 +478,7 @@ export default function ApexDashboard() {
             <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
 
               {/* Overview */}
-              <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: "clamp(16px,3vw,22px)", marginBottom: 18 ,marginTop:20}}>
+              <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: "clamp(16px,3vw,22px)", marginBottom: 18 ,margin:10,marginTop:20}}>
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
                   <div>
                     <div style={{ ...ffH, fontSize: "clamp(15px,2.5vw,20px)", fontWeight: 700, color: C.text, letterSpacing: "-0.3px", marginBottom: 12, lineHeight: 1.3 }}>
@@ -511,10 +511,10 @@ export default function ApexDashboard() {
 
               <TileSlider tiles={property.tiles} />
 
-              <div style={{ ...ffH, fontSize: 10, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.muted, marginBottom: 14 }}>
+              <div style={{ ...ffH, fontSize: 10, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: C.muted, margin: 14 }}>
                 Property details
               </div>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 12, marginBottom: 18 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))", gap: 12, margin: 18 }}>
                 <DetCard title="Parcel details" rows={[
                   { key: "APN", value: property.apn },
                   { key: "County", value: property.county },
@@ -548,7 +548,7 @@ export default function ApexDashboard() {
               </div>
 
               {/* Actions */}
-              <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap", paddingTop: 16, borderTop: `1px solid ${C.border}` }}>
+              <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap", paddingTop: 16, paddingBottom: 10, borderTop: `1px solid ${C.border}` }}>
                 <button
                   onClick={() => { setAppState("idle"); setQuery(""); setProperty(null); }}
                   style={{ padding: "9px 18px", border: `1px solid ${C.border}`, background: "transparent", color: C.muted, fontSize: 12, fontWeight: 500, borderRadius: 30, cursor: "pointer", fontFamily: "'Space Grotesk', sans-serif", transition: "all 0.15s" }}
