@@ -295,7 +295,6 @@ export default function ApexDashboard() {
   const [stype,       setStype]       = useState<"address" | "apn">("address");
   const [appState,    setAppState]    = useState<AppState>("idle");
   const [property,    setProperty]    = useState<Property | null>(null);
-  const [saved,       setSaved]       = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
