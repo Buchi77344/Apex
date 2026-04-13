@@ -324,38 +324,46 @@ export default function ApexDashboard() {
   const isIdle   = appState === "idle" || notFound;
 
   return (
-    <div style={{ ...ff, background: C.bg, height: "100vh", display: "flex", color: C.text, overflow: "hidden" }}>
+    <div style={{ ...ff, background: C.bg, display: "flex", flexDirection: "column", color: C.text, minHeight: "100vh" }}>
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { margin: 0; background: ${C.bg}; overflow: hidden; }
-        html { height: 100%; overflow: hidden; }
+        body { margin: 0; background: ${C.bg}; }
+        html { height: auto; }
         select option { background: ${C.card}; color: ${C.text}; }
         @keyframes apex-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.7;transform:scale(0.96)} }
-        /* Desktop: sidebar fixed, content scrolls */
+        /* Desktop: sidebar fixed, nav fixed, content scrolls */
         @media (min-width: 1024px) {
-          .apex-sidebar { position: fixed !important; left: 0; top: 0; height: 100vh; transform: none !important; transition: none !important; }
-          .apex-main-wrap { margin-left: 260px !important; height: 100vh !important; overflow-y: auto !important; }
+          .apex-wrapper { display: flex; height: 100vh; overflow: hidden; width: 100%; }
+          .apex-sidebar { position: fixed !important; left: 0; top: 0; height: 100vh; width: 260px; transform: none !important; transition: none !important; z-index: 50; }
+          .apex-main-wrap { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; width: 100%; }
+          .apex-navbar { position: sticky; top: 0; z-index: 30; flex-shrink: 0; width: 100%; }
+          .apex-content { flex: 1; overflow-y: auto; overflow-x: hidden; width: 100%; }
           .apex-hamburger { display: none !important; }
           .apex-overlay { display: none !important; }
         }
-        /* Mobile: sidebar slides over content */
+        /* Mobile: responsive layout */
         @media (max-width: 1023px) {
-          .apex-sidebar { position: fixed !important; }
+          .apex-wrapper { display: flex; flex-direction: column; min-height: 100vh; width: 100%; }
+          .apex-sidebar { position: fixed !important; width: 100%; }
+          .apex-navbar { position: sticky; top: 0; z-index: 25; flex-shrink: 0; width: 100%; }
+          .apex-content { flex: 1; overflow-y: auto; width: 100%; }
         }
       `}</style>
 
-      {/* Sidebar — inside the flex row so it takes space on desktop */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onSearch={search} />
+      {/* Wrapper for desktop layout */}
+      <div className="apex-wrapper">
+        {/* Sidebar — inside the flex row so it takes space on desktop */}
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} onSearch={search} />
 
-      {/* Main content */}
-      <div className="apex-main-wrap" style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+        {/* Main content */}
+        <div className="apex-main-wrap" style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
 
-        {/* Nav */}
-        <nav style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "16px clamp(16px,4vw,28px)", background: C.surface,
-          borderBottom: `1px solid ${C.border}`, flexWrap: "wrap", gap: 12, flexShrink: 0,
-        }}>
+          {/* Nav */}
+          <nav className="apex-navbar" style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "16px clamp(16px,4vw,28px)", background: C.surface,
+            borderBottom: `1px solid ${C.border}`, flexWrap: "wrap", gap: 12, flexShrink: 0,
+          }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <button
               className="apex-hamburger"
@@ -387,8 +395,10 @@ export default function ApexDashboard() {
           </div>
         </nav>
 
-        {/* Search zone */}
-        <div style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: "clamp(20px,4vw,32px) clamp(16px,4vw,28px)" }}>
+        {/* Scrollable content area */}
+        <div className="apex-content" style={{ padding: "clamp(16px,3.5vw,24px) clamp(16px,4vw,24px)" }}>
+          {/* Search zone */}
+          <div style={{ background: C.surface, borderBottom: `1px solid ${C.border}`, padding: "clamp(20px,4vw,32px) clamp(16px,4vw,28px)" }}>
           <div style={{ ...ff, fontSize: 10, fontWeight: 600, letterSpacing: "2.5px", textTransform: "uppercase", color: C.muted, marginBottom: 10 }}>
             Land Deal Intelligence
           </div>
@@ -445,10 +455,8 @@ export default function ApexDashboard() {
           </div>
         </div>
 
-        {/* Content */}
-        <div style={{ flex: 1, padding: "clamp(16px,3.5vw,24px) clamp(16px,4vw,24px)", overflowY: "auto" }}>
-
-          {isIdle && (
+        {/* Content area - controlled by apex-content above */}
+        {isIdle && (
             <div style={{ padding: "clamp(50px,12vh,80px) 20px", textAlign: "center" }}>
               <div style={{ width: 64, height: 64, borderRadius: "50%", background: C.card, border: `1px solid ${C.border}`, margin: "0 auto 16px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={C.muted} strokeWidth="1.5">
@@ -470,7 +478,7 @@ export default function ApexDashboard() {
             <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
 
               {/* Overview */}
-              <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: "clamp(16px,3vw,22px)", marginBottom: 18 }}>
+              <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 16, padding: "clamp(16px,3vw,22px)", marginBottom: 18 ,marginTop:20}}>
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
                   <div>
                     <div style={{ ...ffH, fontSize: "clamp(15px,2.5vw,20px)", fontWeight: 700, color: C.text, letterSpacing: "-0.3px", marginBottom: 12, lineHeight: 1.3 }}>
@@ -589,6 +597,7 @@ export default function ApexDashboard() {
             ))}
           </div>
           <span style={{ ...ff, fontSize: 10, color: C.muted }}>© 2025 Apex Intelligence</span>
+        </div>
         </div>
       </div>
     </div>
