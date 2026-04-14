@@ -1,7 +1,12 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 
 type TagColor = "green" | "blue" | "amber" | "red" | "gray";
+
+interface SearchState {
+  search?: { q: string; t: "address" | "apn" };
+}
 
 interface HighlightTile {
   icon: string;
@@ -404,6 +409,8 @@ function TileSlider({ tiles }: { tiles: HighlightTile[] }) {
 
 // ─── Main Dashboard ───────────────────────────────────────────────────────────
 export default function LandwizDashboard() {
+  const location = useLocation();
+  const locationState = location.state as SearchState | null;
   const [query,       setQuery]       = useState("");
   const [stype,       setStype]       = useState<"address" | "apn">("address");
   const [appState,    setAppState]    = useState<AppState>("idle");
@@ -424,6 +431,12 @@ export default function LandwizDashboard() {
       else setAppState("notfound");
     }, 3800);
   }, []);
+
+  useEffect(() => {
+    if (locationState?.search) {
+      search(locationState.search.q, locationState.search.t);
+    }
+  }, [locationState, search]);
 
   const QUICK = [
     { label: "4823 Ridgeline Rd", q: "4823 Ridgeline Rd, Flagstaff, AZ",  t: "address" as const },

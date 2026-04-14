@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, type CSSProperties } from "react";
+import { NavLink } from "react-router-dom";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -123,11 +124,11 @@ function IconClose({ color }: { color: string }) {
 }
 
 const NAV_ITEMS = [
-  { id: "search",  label: "Property Search",  active: true  },
-  { id: "deal",    label: "Deal Intelligence", active: false },
-  { id: "saved",   label: "Saved Properties",  active: false },
-  { id: "reports", label: "Market Reports",    active: false },
-  { id: "buyer",   label: "Buyer Matching",    active: false },
+  { id: "search",  label: "Property Search",  path: "/" },
+  { id: "deal",    label: "Deal Intelligence", path: "/deal-intelligence" },
+  { id: "saved",   label: "Saved Properties",  path: "/saved-properties" },
+  { id: "reports", label: "Market Reports",    path: "/market-reports" },
+  { id: "buyer",   label: "Buyer Matching",    path: "/buyer-matching" },
 ];
 
 const BOTTOM_ITEMS = [
@@ -293,21 +294,38 @@ function Sidebar({ isOpen, onClose, onSearch }: SidebarProps) {
             Navigation
           </div>
           {NAV_ITEMS.map(item => (
-            <div
+            <NavLink
               key={item.label}
+              to={item.path}
               className="lw-nav-item"
-              style={{ background: item.active ? "rgba(59,130,246,0.10)" : "transparent" }}
+              onClick={onClose}
+              style={({ isActive }) => ({
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "8px 10px",
+                borderRadius: 9,
+                cursor: "pointer",
+                transition: "background 0.15s",
+                marginBottom: 2,
+                background: isActive ? "rgba(59,130,246,0.10)" : "transparent",
+                textDecoration: "none",
+              })}
             >
-              <div style={{ width: 18, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <NavIcon id={item.id} color={item.active ? C.blue : C.faint} />
-              </div>
-              <span style={{ ...ff, fontSize: 13, color: item.active ? C.text : C.muted, fontWeight: item.active ? 500 : 400, flex: 1 }}>
-                {item.label}
-              </span>
-              {item.active && (
-                <div style={{ width: 5, height: 5, borderRadius: "50%", background: C.blue, flexShrink: 0 }} />
+              {({ isActive }) => (
+                <>
+                  <div style={{ width: 18, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <NavIcon id={item.id} color={isActive ? C.blue : C.faint} />
+                  </div>
+                  <span style={{ ...ff, fontSize: 13, color: isActive ? C.text : C.muted, fontWeight: isActive ? 500 : 400, flex: 1 }}>
+                    {item.label}
+                  </span>
+                  {isActive && (
+                    <div style={{ width: 5, height: 5, borderRadius: "50%", background: C.blue, flexShrink: 0 }} />
+                  )}
+                </>
               )}
-            </div>
+            </NavLink>
           ))}
         </div>
 
