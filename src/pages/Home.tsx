@@ -439,10 +439,13 @@ export default function LandwizDashboard() {
     <div style={{ ...ff, background: C.bg, display: "flex", flexDirection: "column", color: C.text, minHeight: "100vh" }}>
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { margin: 0; background: ${C.bg}; }
+        body { margin: 0; background: ${C.bg}; overflow-x: hidden; }
         html { height: auto; }
         select option { background: ${C.card}; color: ${C.text}; }
+        input, select, button, textarea { -webkit-appearance: none; appearance: none; border-radius: 0; }
+        input, select { font-size: 16px; }
         @media (min-width: 1024px) {
+          input, select { font-size: 14px; }
           .apex-wrapper { display: flex; height: 100vh; overflow: hidden; width: 100%; }
           .apex-sidebar { position: fixed !important; left: 0; top: 0; height: 100vh; width: 260px; transform: none !important; transition: none !important; z-index: 50; }
           .apex-main-wrap { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; width: calc(100% - 260px); margin-left: 260px; }
@@ -453,18 +456,18 @@ export default function LandwizDashboard() {
         }
         @media (max-width: 1023px) {
           .apex-wrapper { display: flex; flex-direction: column; min-height: 100vh; width: 100%; }
-          .apex-sidebar { position: fixed !important; width: 100%; }
+          .apex-sidebar { position: fixed !important; width: 100%; max-height: 80vh; }
           .apex-navbar { position: sticky; top: 0; z-index: 25; flex-shrink: 0; width: 100%; }
           .apex-content { flex: 1; overflow-y: auto; width: 100%; }
         }
         .lw-search-bar { display: flex; background: ${C.card}; border: 1px solid ${C.border}; border-radius: 40px; overflow: hidden; }
         @media (max-width: 600px) {
-          .lw-search-bar { flex-direction: column; border-radius: 16px; }
-          .lw-search-select { border-right: none !important; border-bottom: 1px solid ${C.border}; height: 44px !important; border-radius: 0 !important; width: 100%; }
-          .lw-search-input { height: 44px !important; padding: 0 14px !important; }
-          .lw-search-btn { height: 44px !important; border-radius: 0 0 14px 14px !important; width: 100%; }
+          .lw-search-bar { flex-direction: column; border-radius: 12px; }
+          .lw-search-select { border-right: none !important; border-bottom: 1px solid ${C.border}; height: 48px !important; border-radius: 0 !important; width: 100%; padding: 0 12px !important; font-size: 16px; }
+          .lw-search-input { height: 48px !important; padding: 0 12px !important; font-size: 16px; }
+          .lw-search-btn { height: 48px !important; border-radius: 0 0 12px 12px !important; width: 100%; font-size: 16px; }
         }
-        .lw-chips { display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+        .lw-chips { display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
         .lw-chips::-webkit-scrollbar { display: none; }
       `}</style>
 
@@ -533,14 +536,14 @@ export default function LandwizDashboard() {
                     className="lw-search-select"
                     value={stype}
                     onChange={e => setStype(e.target.value as "address" | "apn")}
-                    style={{ border: "none", background: "transparent", borderRight: `1px solid ${C.border}`, padding: "0 14px", height: 50, fontSize: 11, fontWeight: 700, color: C.muted, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "1px", textTransform: "uppercase", cursor: "pointer", outline: "none", flexShrink: 0 }}
+                    style={{ border: "none", background: "transparent", borderRight: `1px solid ${C.border}`, padding: "0 14px", height: 50, fontSize: "clamp(11px, 2vw, 14px)", fontWeight: 700, color: C.muted, fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "1px", textTransform: "uppercase", cursor: "pointer", outline: "none", flexShrink: 0 }}
                   >
                     <option value="address">Address</option>
                     <option value="apn">APN</option>
                   </select>
                   <input
                     className="lw-search-input"
-                    style={{ flex: 1, border: "none", background: "transparent", padding: "0 16px", fontSize: 14, color: C.text, fontFamily: "'Space Grotesk', sans-serif", outline: "none", height: 50, minWidth: 0 }}
+                    style={{ flex: 1, border: "none", background: "transparent", padding: "0 16px", fontSize: "clamp(14px, 2vw, 16px)", color: C.text, fontFamily: "'Space Grotesk', sans-serif", outline: "none", height: 50, minWidth: 0 }}
                     placeholder={stype === "address" ? "e.g., 4823 Ridgeline Rd, Flagstaff" : "e.g., 107-42-003C"}
                     value={query}
                     onChange={e => setQuery(e.target.value)}
@@ -549,7 +552,7 @@ export default function LandwizDashboard() {
                   <button
                     className="lw-search-btn"
                     onClick={() => search(query, stype)}
-                    style={{ padding: "0 22px", background: C.text, border: "none", color: C.bg, fontSize: 13, fontWeight: 700, fontFamily: "'Outfit', sans-serif", cursor: "pointer", height: 50, flexShrink: 0, letterSpacing: "0.3px", transition: "opacity 0.15s", whiteSpace: "nowrap" }}
+                    style={{ padding: "0 22px", background: C.text, border: "none", color: C.bg, fontSize: "clamp(13px, 2vw, 14px)", fontWeight: 700, fontFamily: "'Outfit', sans-serif", cursor: "pointer", height: 50, flexShrink: 0, letterSpacing: "0.3px", transition: "opacity 0.15s", whiteSpace: "nowrap" }}
                     onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
                     onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
                   >
@@ -674,7 +677,7 @@ export default function LandwizDashboard() {
                     ↺ New search
                   </button>
                   <button
-                    style={{ padding: "9px 22px", background: C.text, border: "none", color: C.bg, fontSize: 12, fontWeight: 700, borderRadius: 30, cursor: "pointer", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.2px", transition: "opacity 0.15s" }}
+                    style={{ padding: "9px 22px",marginRight: 10, background: C.text, border: "none", color: C.bg, fontSize: 12, fontWeight: 700, borderRadius: 30, cursor: "pointer", fontFamily: "'Outfit', sans-serif", letterSpacing: "0.2px", transition: "opacity 0.15s" }}
                     onMouseEnter={e => { e.currentTarget.style.opacity = "0.85"; }}
                     onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
                   >
