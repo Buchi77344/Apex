@@ -445,7 +445,7 @@ export default function LandwizDashboard() {
         @media (min-width: 1024px) {
           .apex-wrapper { display: flex; height: 100vh; overflow: hidden; width: 100%; }
           .apex-sidebar { position: fixed !important; left: 0; top: 0; height: 100vh; width: 260px; transform: none !important; transition: none !important; z-index: 50; }
-          .apex-main-wrap { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; width: 100%; }
+          .apex-main-wrap { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; width: calc(100% - 260px); margin-left: 260px; }
           .apex-navbar { position: sticky; top: 0; z-index: 30; flex-shrink: 0; width: 100%; }
           .apex-content { flex: 1; overflow-y: auto; overflow-x: hidden; width: 100%; }
           .apex-hamburger { display: none !important; }
