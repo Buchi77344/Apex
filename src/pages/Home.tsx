@@ -667,7 +667,7 @@ export default function LandwizDashboard() {
                 <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap", paddingTop: 16, paddingBottom: 10, borderTop: `1px solid ${C.border}` }}>
                   <button
                     onClick={() => { setAppState("idle"); setQuery(""); setProperty(null); }}
-                    style={{ padding: "9px 18px", border: `1px solid ${C.border}`, background: "transparent", color: C.muted, fontSize: 12, fontWeight: 500, borderRadius: 30, cursor: "pointer", fontFamily: "'Space Grotesk', sans-serif", transition: "all 0.15s" }}
+                    style={{ padding: "9px 18px", marginRight: 10, border: `1px solid ${C.border}`, background: "transparent", color: C.muted, fontSize: 12, fontWeight: 500, borderRadius: 30, cursor: "pointer", fontFamily: "'Space Grotesk', sans-serif", transition: "all 0.15s" }}
                     onMouseEnter={e => { e.currentTarget.style.color = C.text; e.currentTarget.style.borderColor = C.muted; }}
                     onMouseLeave={e => { e.currentTarget.style.color = C.muted; e.currentTarget.style.borderColor = C.border; }}
                   >
