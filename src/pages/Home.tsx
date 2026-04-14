@@ -456,7 +456,7 @@ export default function LandwizDashboard() {
         }
         @media (max-width: 1023px) {
           .apex-wrapper { display: flex; flex-direction: column; min-height: 100vh; width: 100%; }
-          .apex-sidebar { position: fixed !important; width: 100%; max-height: 80vh; }
+          .apex-sidebar { position: fixed !important; top: 0; left: 0; width: 100%; height: 100vh; z-index: 50; }
           .apex-navbar { position: sticky; top: 0; z-index: 25; flex-shrink: 0; width: 100%; }
           .apex-content { flex: 1; overflow-y: auto; width: 100%; }
         }
@@ -506,7 +506,7 @@ export default function LandwizDashboard() {
                 { label: "v1.0",   bg: "#0D1F3A", color: C.blue  },
                 { label: "Beta",   bg: "#1A1A20", color: C.muted, border: `0.5px solid ${C.border}` },
               ].map(p => (
-                <span key={p.label} style={{ fontSize: 10, fontWeight: 600, padding: "4px 12px", borderRadius: 20, background: p.bg, color: p.color, border: (p as any).border }}>
+                <span key={p.label} style={{ fontSize: "clamp(10px, 2vw, 11px)", fontWeight: 600, padding: "clamp(4px, 2vw, 6px) clamp(12px, 3vw, 14px)", borderRadius: 20, background: p.bg, color: p.color, border: (p as any).border }}>
                   {p.label}
                 </span>
               ))}
