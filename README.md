@@ -1,272 +1,260 @@
+You’ve got strong ideas here — the issue isn’t the content, it’s structure. Right now it reads like notes; what you need is a **clean, developer-ready README with hierarchy, flow, and system clarity**.
 
-````md
-# Buyer Box Engine
-
-A property intelligence and buyer-matching platform designed to help analyze land deals, evaluate risk, calculate offer potential, and match properties against buyer criteria through a step-by-step workflow.
-
-## Overview
-
-This system is built in milestones so each phase remains stable, scalable, and easy to improve over time.
-
-The platform allows users to:
-
-- Search for a property by address or APN
-- Pull and display clean property data
-- Run deal analysis and intelligence checks
-- Evaluate risk and profit potential
-- Match properties against buyer criteria
-- Generate an AI-based verdict and deal tag
+Below is a **fully restructured, professional version** you can drop directly into your README 👇
 
 ---
 
-## Full System Flow
+# 🚀 Buyer Box Engine – Property Intelligence Platform
 
-```text
-Property Search
-↓
-Property Summary
-↓
-Property Intelligence / Deal Analysis
-↓
-Buyer Matching
-↓
-AI Verdict + Deal Tag
-↓
-Final Results on Dashboard
-````
-
-This structure makes it possible to build the platform step by step while ensuring every milestone connects properly into the next.
+A scalable property analysis and buyer-matching system designed to evaluate land deals, assess risk, calculate profitability, and match properties to buyer criteria — all in a unified workflow.
 
 ---
 
-## Milestone 1 – Property Lookup Dashboard
+# 🧠 System Philosophy
 
-This phase focuses on building the core dashboard where the user can search for a property and instantly view the property summary.
+All features are built on **one shared data layer and logic engine**.
+
+* No duplicated logic
+* No disconnected modules
+* Every milestone builds on the previous one
+
+This ensures:
+
+* Consistency across results
+* Scalability for future upgrades
+* Clean architecture for expansion (AI + Map Layer)
+
+---
+
+# 🏗️ System Architecture (Milestone-Based)
+
+## 🔹 Milestone 1 — Property Data Foundation
+
+### Objective
+
+Create a **clean, reusable property data layer** with a quick insight summary.
 
 ### Flow
 
-```text
-Enter Address / APN
+```
+Property Search (Address / APN)
 ↓
-Send Request to n8n
+Fetch Property Data
 ↓
-n8n Calls Regrid API
+Structure & Normalize Data
 ↓
-Process / Clean Property Data
-↓
-Display Property Summary on Dashboard
-↓
-Optional: Save Property to Supabase
+Generate Quick Summary Indicators
 ```
 
-### Features
+### Output
 
-* Single dashboard UI
-* Address / APN property search
-* n8n webhook workflow
-* Regrid API integration
-* Clean property summary display
-* Optional property save to Supabase
-* Base structure prepared for future analysis and buyer matching
+* Structured property dataset (core system foundation)
+* Quick visual indicators:
+
+  * Flood Risk → Yes / No
+  * Road Access → Likely / Unknown
+  * Utilities → Nearby / Unknown
+
+### Goal
+
+Allow users to **instantly understand the property at a glance**, not just raw data.
 
 ---
 
-## Milestone 2 – Property Intelligence & Deal Logic
+## 🔹 Milestone 2 — Deal Analysis Engine
 
-This phase makes the system intelligent by analyzing the property data and generating deal insights.
+### Objective
+
+Transform raw property data into a **clear investment decision**, not just analysis.
 
 ### Flow
 
-```text
-Use Property Data
+```
+Input: Property Data (from Milestone 1)
 ↓
-Run Utility Checks
+Run Intelligence Checks:
+  - Utilities
+  - Flood Risk
+  - Comparable Sales (Comps)
+  - Location Factors
 ↓
-Run Flood Zone / HOA Checks
+Apply Analysis Logic
 ↓
-Run Buildability Checks
-↓
-Pull Comparable Sales / Property History
-↓
-Calculate Offer Logic
-↓
-Run Risk Evaluation
-↓
-Generate Deal Score
-↓
-Display Analysis Results on Dashboard
+Generate Unified Result
 ```
 
-### Features
+### Final Output (Single Structured Response)
 
-* Utilities check (electric, water, sewer, septic via APIs)
-* Flood zone check
-* HOA status check
-* Road access / buildability validation
-* Comparable land sales
-* Property history where available
-* Basic offer calculation
-* Risk evaluation
-* Profit margin logic
-* Final deal score displayed on dashboard
+* Deal Score
+* Risk Level
+* Suggested Offer
+* Estimated Resale Value
+* Estimated Profit
+* Final Decision
+
+  * Strong Deal
+  * Negotiate
+  * Avoid
+* AI Summary (short explanation)
+
+### Goal
+
+Return **one clean, decision-ready object** that is easy to display on the dashboard.
 
 ---
 
-## Milestone 3 – Buyer Matching + Buyer Box Engine
+## 🔹 Milestone 3 — Buyer Box Engine (Version 1)
 
-This phase builds the matching engine that compares properties against buyer criteria and generates a clear verdict.
+### Objective
 
-### Buyer Box Engine – Version 1 Flow
+Match properties to buyer criteria in a **clear, interpretable way**.
 
-```text
-Upload Image
+### Flow
+
+```
+Upload Buyer Box Image
 ↓
 OCR Extraction
 ↓
-Show Editable Criteria
+User Edits / Confirms Criteria
 ↓
-User Confirms
+(Optional) Save Buyer Profile
 ↓
-Save Buyer (optional)
+Run Matching Engine
 ↓
-Run Match Engine
-↓
-Generate Checklist
-↓
-Generate AI Verdict
-↓
-Assign Deal Tag
-↓
-Display Results
+Generate Results
 ```
 
-### Features
+### Output
 
-* Upload buyer box image
-* OCR extraction of buyer criteria
-* Editable criteria before matching
-* User confirmation step for accuracy
-* Optional save as reusable buyer profile
-* Rule-based match engine
-* Checklist output (pass / fail / partial)
-* AI-generated summary / verdict
-* Deal tag (Good Fit / Borderline / Not a Fit)
-* Results displayed on dashboard
+* Match Score (0–100)
+* Checklist:
 
-### Version 2 – Future Upgrade
+  * Pass / Fail / Partial
+* Deal Tag:
 
-* Improved OCR accuracy
-* Weighted scoring / advanced matching logic
-* Bulk matching across multiple properties
-* Smarter AI insights and recommendations
+  * Good Fit
+  * Borderline
+  * Not a Fit
+* AI Explanation (short reasoning)
 
----
+### Additional Feature
 
-## Core Capabilities
+* Save buyer as a **reusable profile** for future matching
 
-* Property lookup by address or APN
-* Property data processing through n8n workflows
-* Regrid API integration
-* Optional Supabase storage
-* Deal analysis and scoring
-* Risk and profitability evaluation
-* Buyer criteria extraction from image uploads
-* Rule-based and AI-assisted matching workflow
-* Clear dashboard-driven results
+### Goal
+
+Make matching **transparent and easy to understand**, not a black box.
 
 ---
 
-## Project Goal
+# 🔄 Version 2 — Matching Engine Upgrade
 
-The goal of this project is to create a streamlined system that helps users quickly:
+### Objective
 
-1. Find a property
-2. Understand its core details
-3. Analyze whether it is a good deal
-4. Match it against buyer requirements
-5. Get a final verdict with confidence
+Evolve from simple matching → **ranking engine**
 
----
+### Enhancements
 
-## Future Expansion
+#### 1. Property → Multiple Buyers
 
-Planned future improvements may include:
+* Loop through all saved buyers
+* Rank buyers based on match score
 
-* More advanced scoring models
-* Better OCR and extraction pipelines
-* Bulk property analysis
-* Expanded data source integrations
-* Smarter AI recommendations
-* Reusable buyer profiles and saved searches
-* Enhanced reporting and export features
+#### 2. Buyer → Multiple Properties
 
----
+* Show best deals for each buyer
 
-## Architecture Direction
+#### 3. Weighted Scoring System
 
-The platform is designed around a modular workflow:
+Introduce weighted logic based on:
 
-* **Frontend Dashboard** for user interaction
-* **n8n Workflows** for automation and API orchestration
-* **Regrid API** for property lookup
-* **Additional APIs** for utilities, flood, HOA, comps, and history
-* **Supabase** for optional data storage
-* **AI Layer** for summaries, verdicts, and intelligent recommendations
+* Price
+* Location
+* Acreage
+* Custom rules
 
-This modular approach keeps the project flexible and easier to scale over time.
+### Goal
+
+Turn the system into a **decision intelligence engine**, not just a matcher.
 
 ---
 
-## Status
+# 🗺️ Version 3 — Visual Intelligence Layer
 
-This project is being built in milestone phases to ensure stability, testing, and clear progress as each layer of the system is completed.
+### Objective
 
----
+Enable users to **interact with property data visually on a map**
 
-## 🚀 Vision & Future Direction
+### Core Features
 
-What we’re building right now (Version 1) is already a very solid foundation — it covers the full flow from property lookup → deal analysis → buyer matching 🔥  
+* Parcel Boundary Display (polygon outlines)
+* Satellite View (default layer)
+* Road Access Visualization
+* Nearby Structures Detection (for utility estimation)
 
-But this is just the beginning.
+### Future Enhancements
 
-The next phase (Version 2) is where the system evolves from a strong tool into something truly next-level and hard to compete with 🔥  
+* Flood Zone Overlays
+* Utility Proximity Layers
+* AI Visual Insights (map-based explanations)
 
-### 🔮 What’s Coming Next
+### System Integration
 
-- A smarter scoring system that doesn’t just check conditions, but weighs them like a real investor would 🔥  
-- An AI deal advisor that explains *why* a deal is good or risky and suggests next steps 🔥  
-- More advanced buyer matching with ranked results instead of just pass/fail  
-- Stronger comps analysis with real pricing insights like price per acre and deal spread  
-- Automation flows where deals can be analyzed and matched automatically 🔥  
-- A more intelligent system that improves over time using AI models 🔥  
+* Uses the **same property data + analysis engine**
+* Embedded into the analysis view (not separate)
 
-### 🧠 The Goal
+### Goal
 
-This is where the platform starts to feel less like a tool and more like a **decision-making engine** 🔥  
-
----
-
-### ⚠️ Development Approach
-
-We are intentionally focusing on executing Version 1 cleanly before expanding further.
-
-The priority is to ensure:
-- Stability  
-- Accuracy  
-- Strong system foundation  
-
-Once Version 1 is fully complete and validated, Version 2 will be introduced step by step with advanced AI models and enhanced intelligence layers.
+Provide **real-world spatial understanding**, not just text data.
 
 ---
 
-### 💡 Philosophy
+# 📊 Final Dashboard (Unified View)
 
-Build the foundation right → Then scale intelligence.
+At the end of Milestone 2 + Buyer Engine, all results are combined into **one interface**.
 
-This approach ensures the system remains reliable, scalable, and truly top-tier.
+### Dashboard Displays:
 
-## License
+* Deal Score
+* Risk Level
+* Suggested Offer
+* Estimated Profit
+* Final Decision
+* Top Buyer Matches (if available)
+* AI Summary
 
-This project is proprietary unless otherwise specified.
+### Goal
 
+Give users **everything in one place** — no switching between sections.
+
+---
+
+# 🔁 Full System Flow
+
+```
+Property Search
+↓
+Property Summary (Milestone 1)
+↓
+Deal Analysis (Milestone 2)
+↓
+Buyer Matching (Milestone 3)
+↓
+AI Verdict + Deal Tag
+↓
+Final Dashboard View
+```
+
+---
+
+# ⚙️ Key Design Principles
+
+* Single source of truth (property data)
+* Modular but connected architecture
+* Human-readable outputs (not raw calculations)
+* AI used for explanation, not just automation
+* Built for scalability (future map + intelligence layers)
+
+---
 
